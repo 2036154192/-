@@ -28,7 +28,6 @@ export class AuthController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Post("login")
   async login(@Body() uesr: LoginDto, @Req() req) {
-    console.log(req);
     return this.authService.login(req.user);
   }
 

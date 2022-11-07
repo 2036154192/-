@@ -21,13 +21,14 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(username: string, password: string) {
+    console.log(username, password);
     const user = await this.userRepository
       .createQueryBuilder("user")
       .addSelect("user.password")
       .where("user.username=:username", { username })
       .getOne();
     if (!user) {
-      throw new BadRequestException("用户名错误");
+      throw new BadRequestException("账号错误");
     }
     if (!compareSync(password, user.password)) {
       throw new BadRequestException("密码错误");

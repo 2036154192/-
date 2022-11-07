@@ -12,7 +12,7 @@ import { UserService } from "../user/user.service";
 
 const jwtModule = JwtModule.register({
   secret: "jiangyue123456",
-  signOptions: { expiresIn: "4h" }
+  signOptions: { expiresIn: "24h" } // token 过期时效
 });
 
 @Module({

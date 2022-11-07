@@ -22,7 +22,7 @@ export class User {
   password: string;
 
   //头像
-  @Column()
+  @Column({ default: "" })
   avatar: string;
 
   //邮箱
