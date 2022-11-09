@@ -6,6 +6,7 @@ import { PostsModule } from "./posts/posts.module";
 import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
 import { PageModule } from "./page/page.module";
+import { NfcModule } from "./nfc/nfc.module";
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { PageModule } from "./page/page.module";
     PostsModule,
     UserModule,
     AuthModule,
-    PageModule
+    PageModule,
+    NfcModule
   ],
   controllers: [AppController],
   providers: [AppService]
