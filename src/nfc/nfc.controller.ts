@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
-import { NfcService } from "./nfc.service";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
+import { NfcRo, NfcService } from "./nfc.service";
 import { CreateNfcDto } from "./dto/create-nfc.dto";
 import { UpdateNfcDto } from "./dto/update-nfc.dto";
 import { AuthGuard } from "@nestjs/passport";
@@ -17,8 +17,8 @@ export class NfcController {
 
   @UseGuards(AuthGuard("jwt"))
   @Get()
-  findAll() {
-    return this.nfcService.findAll();
+  findAll(@Query() query): Promise<NfcRo> {
+    return this.nfcService.findAll(query);
   }
 
   @Get(":id")
@@ -35,6 +35,6 @@ export class NfcController {
   @UseGuards(AuthGuard("jwt"))
   @Delete(":id")
   remove(@Param("id") id: string) {
-    return this.nfcService.remove(+id);
+    return this.nfcService.remove(id);
   }
 }

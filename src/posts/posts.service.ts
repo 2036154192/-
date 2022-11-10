@@ -36,9 +36,9 @@ export class PostsService {
     qb.orderBy("post.create_time", "DESC");
 
     const count = await qb.getCount();
-    const { pageNum = 1, pageSize = 10, ...params } = query;
+    const { currentPage = 1, pageSize = 10, ...params } = query;
     qb.limit(pageSize);
-    qb.offset(pageSize * (pageNum - 1));
+    qb.offset(pageSize * (currentPage - 1));
 
     const posts = await qb.getMany();
     return { list: posts, count: count };

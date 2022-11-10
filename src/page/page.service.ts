@@ -32,7 +32,6 @@ export class PageService {
 
   async findAll(query, req): Promise<PageRo> {
     const role = req.user.role;
-    console.log(query, role);
     const db = await getRepository(PageEntity).createQueryBuilder("page");
     const list = await db.getMany();
     const count = await db.getCount();
@@ -81,7 +80,6 @@ const traverse = (arr: any, id: string) => {
   myArr.forEach(item => {
     traverse(arr, item);
   });
-  console.log("sdfsdf", myArr);
   idArr = [...idArr, ...myArr];
   return myArr;
 };
