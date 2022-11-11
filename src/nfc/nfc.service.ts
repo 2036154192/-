@@ -30,9 +30,9 @@ export class NfcService {
   }
 
   async findAll(query): Promise<NfcRo> {
-    const qb = await getRepository(NfcEntity).createQueryBuilder("post");
+    const qb = await getRepository(NfcEntity).createQueryBuilder("nfc");
     qb.where("1 = 1");
-    qb.orderBy("post.create_time", "DESC");
+    qb.orderBy("nfc.create_time", "DESC");
 
     const count = await qb.getCount();
     const { currentPage = 1, pageSize = 10, ...params } = query;
@@ -45,6 +45,39 @@ export class NfcService {
 
   findOne(id: number) {
     return `This action returns a #${id} nfc`;
+  }
+
+  async findCode(type: string, code: string) {
+    if (type === "null") {
+      throw new HttpException("没有type", HttpStatus.BAD_REQUEST);
+    }
+    if (code === "null") {
+      throw new HttpException("没有code", HttpStatus.BAD_REQUEST);
+    }
+    const myType = ["all", "text", "audio", "img"];
+    if (myType.indexOf(type) !== -1) {
+      let dataType = null;
+      switch (type) {
+        case "all":
+          dataType = ["title", "subhead", "img", "audio"];
+          break;
+        case "text":
+          dataType = ["title", "subhead"];
+          break;
+        case "audio":
+          dataType = "audio";
+          break;
+        case "img":
+          dataType = "img";
+          break;
+      }
+      let db = await getRepository(NfcEntity).createQueryBuilder("nfc")
+        .select(dataType)
+        .where("nfc.code = :code", { code: code });
+      return await db.getRawOne();
+    } else {
+      throw new HttpException("类型不对", HttpStatus.BAD_REQUEST);
+    }
   }
 
   async update(updateNfcDto: UpdateNfcDto) {

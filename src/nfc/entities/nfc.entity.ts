@@ -18,11 +18,11 @@ export class NfcEntity {
   subhead: string;
 
   //图片
-  @Column({ type: "mediumblob" })
+  @Column({ type: "mediumtext" })
   img: string;
 
   //音频
-  @Column({ type: "longblob" })
+  @Column({ type: "longtext" })
   audio: string;
 
   //创建时间

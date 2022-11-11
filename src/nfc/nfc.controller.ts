@@ -26,6 +26,11 @@ export class NfcController {
     return this.nfcService.findOne(+id);
   }
 
+  @Get("/code/:type/:code")
+  findCode(@Param("code") code: string, @Param("type") type: string) {
+    return this.nfcService.findCode(type, code);
+  }
+
   @UseGuards(AuthGuard("jwt"))
   @Patch()
   update(@Body() updateNfcDto: UpdateNfcDto) {
