@@ -62,7 +62,7 @@ export class NfcService {
           dataType = ["title", "subhead", "img", "audio"];
           break;
         case "text":
-          dataType = ["title", "subhead"];
+          dataType = ["title", "subhead", "img"];
           break;
         case "audio":
           dataType = "audio";
