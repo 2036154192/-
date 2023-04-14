@@ -10,7 +10,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  app.setGlobalPrefix("web");
+  app.setGlobalPrefix("jin");
   //全局注册 错误拦截器
   app.useGlobalFilters(new HttpExceptionFilter());
   //全局注册 成功拦截器
@@ -26,7 +26,7 @@ async function bootstrap() {
   //数据验证
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(1314);
+  await app.listen(8888);
 }
 
 bootstrap();

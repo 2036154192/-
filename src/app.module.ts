@@ -16,7 +16,7 @@ import { NfcModule } from "./nfc/nfc.module";
       port: 3306,
       username: "root",
       password: "176176.mjz",
-      database: "blog",
+      database: "jin",
       logging: true,
       entities: ["dist/**/**.entity{.ts,.js}"],
       autoLoadEntities: true, // 自动链接被 forFeature 注册的实体
